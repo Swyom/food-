@@ -57,7 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreMenu }) => {
           className="font-sans text-sm sm:text-base text-neutral-300 max-w-xl mb-10 leading-relaxed font-light tracking-wide opacity-0 animate-slide-up"
           style={{ animationDelay: '1.4s', animationFillMode: 'forwards' }}
         >
-          Welcome to Flavoro. Experience the perfect harmony of seasonal textures, warm ambiance, and exceptional hospitality. We prepare sensory plate presentations designed to elevate your mood.
+          Welcome to Ayushman’s Kitchen, where every meal is made to bring you the comfort of ghar ka khana even on your busiest days. Whether you’re a college student missing home, a working professional with no time to cook, or someone simply craving fresh, wholesome food, we serve homestyle meals prepared with care, warmth, and the familiar taste of home
         </p>
 
         {/* Action Button */}

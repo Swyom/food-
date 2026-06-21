@@ -115,7 +115,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCart, cartItemsCount }) =>
                 onClick={() => scrollToSection('reservation')}
                 className="bg-amber-500 hover:bg-amber-600 text-neutral-950 font-bold text-xs tracking-widest px-6 py-3 rounded-md transition-all shadow-md active:scale-95 cursor-pointer font-sans"
               >
-                BOOK A TABLE
+                BOOK YOUR MEAL  
               </button>
             </Magnet>
           </div>

@@ -39,7 +39,7 @@ export const Gallery: React.FC = () => {
             </div>
             
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-wide mb-6">
-              Moments of <span className="font-serif italic text-amber-500">Fine Dining</span>
+              Dil Se Bana <span className="font-serif italic text-amber-500">Ghar Jaisa Khana</span>
             </h2>
 
             {/* Gallery Tabs */}

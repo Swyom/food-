@@ -292,7 +292,7 @@ export const Reservation: React.FC = () => {
                         className="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-neutral-950 font-bold text-xs tracking-widest uppercase roundedtransition-colors cursor-pointer font-sans shadow shadow-amber-500/10 flex items-center gap-2 justify-center ml-auto active:scale-95 disabled:opacity-50"
                       >
                         {loading && <RefreshCw className="w-3.5 h-3.5 animate-spin" />}
-                        {loading ? 'SYNCHRONIZING...' : 'BOOK MY TABLE'}
+                        {loading ? 'SYNCHRONIZING...' : 'BOOK MY MEAL'}
                       </button>
                     </Magnet>
                   </div>

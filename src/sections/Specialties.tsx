@@ -20,14 +20,6 @@ export const Specialties: React.FC<SpecialtiesProps> = ({ onAddToCart }) => {
     return matchesCategory && matchesFeatured;
   });
 
-  const categories = [
-    { label: 'ALL DISHES', value: 'all' },
-    { label: 'STARTERS', value: 'starters' },
-    { label: 'MAINS', value: 'mains' },
-    { label: 'DESSERTS', value: 'desserts' },
-    { label: 'DRINKS', value: 'drinks' },
-  ] as const;
-
   return (
     <section id="menu" className="py-24 bg-neutral-950 relative overflow-hidden">
       {/* Decorative Blur Backgrounds */}
@@ -41,14 +33,16 @@ export const Specialties: React.FC<SpecialtiesProps> = ({ onAddToCart }) => {
             <div className="flex items-center justify-center gap-2 mb-3">
               <span className="w-6 h-[1px] bg-amber-500" />
               <span className="font-sans text-xs tracking-[0.3em] text-amber-500 font-semibold uppercase">
-                OUR SPECIALTIES
+                OUR SUBSCRIPTIONS
               </span>
               <span className="w-6 h-[1px] bg-amber-500" />
             </div>
             
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-wide mb-4">
-              {showOnlyFeatured ? 'Popular Dishes' : 'Explore Full Menu'}
+              {showOnlyFeatured ? 'Monthly Subscriptions Plans' : 'Explore Full Menu'}
             </h2>
+
+            <p className='text-neutral-400 text-sm tracking-wider pb-8'>Subscribe to our monthly plans and enjoy exclusive discounts and offers.</p>
             
             {/* Elegant wavy pattern or divider */}
             <div className="flex justify-center items-center gap-2 mb-8">
@@ -57,7 +51,7 @@ export const Specialties: React.FC<SpecialtiesProps> = ({ onAddToCart }) => {
               <div className="h-[1px] w-12 bg-neutral-800" />
             </div>
 
-            {/* View Mode Toggle */}
+            {/* View Mode Toggle
             <div className="inline-flex p-1 bg-neutral-900 border border-neutral-800 rounded-lg mb-8">
               <button
                 onClick={() => {
@@ -84,27 +78,11 @@ export const Specialties: React.FC<SpecialtiesProps> = ({ onAddToCart }) => {
               >
                 Full A La Carte Menu
               </button>
-            </div>
+            </div> */}
+
           </AnimatedSection>
 
-          {/* Categories Tab Bar */}
-          <AnimatedSection animation="fade-in" delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 max-w-3xl mx-auto border-b border-neutral-900 pb-4">
-              {categories.map((cat) => (
-                <button
-                  key={cat.value}
-                  onClick={() => setActiveCategory(cat.value)}
-                  className={`px-4 py-2 text-[10px] sm:text-xs font-bold tracking-[0.2em] transition-all cursor-pointer font-sans border-b-2 hover:text-amber-500 capitalize ${
-                    activeCategory === cat.value
-                      ? 'border-amber-500 text-amber-500'
-                      : 'border-transparent text-neutral-400 hover:border-neutral-800'
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-          </AnimatedSection>
+          
         </div>
 
         {/* Menu Cards Grid */}
