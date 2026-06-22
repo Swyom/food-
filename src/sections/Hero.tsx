@@ -1,7 +1,7 @@
-import React from 'react';
-import { ChevronsDown } from 'lucide-react';
-import { SplitText } from '../components/SplitText';
-import { Magnet } from '../components/Magnet';
+import React from "react";
+import { ChevronsDown } from "lucide-react";
+import { SplitText } from "../components/SplitText";
+import { Magnet } from "../components/Magnet";
 
 interface HeroProps {
   onExploreMenu: () => void;
@@ -37,33 +37,51 @@ export const Hero: React.FC<HeroProps> = ({ onExploreMenu }) => {
 
         {/* Good Food */}
         <h2 className="font-serif italic text-4xl sm:text-5xl md:text-6xl text-amber-500/90 tracking-wide mb-1 leading-none font-medium">
-          <SplitText text="Good Food" duration={1.2} delay={0.2} stagger={0.05} />
+          <SplitText
+            text="Good Food"
+            duration={1.2}
+            delay={0.2}
+            stagger={0.05}
+          />
         </h2>
 
         {/* GOOD MOOD */}
         <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-bold text-white tracking-widest uppercase leading-tight mb-6 select-none">
-          <SplitText text="GOOD MOOD" duration={1.5} delay={0.6} stagger={0.06} />
+          <SplitText
+            text="GOOD MOOD"
+            duration={1.5}
+            delay={0.6}
+            stagger={0.06}
+          />
         </h1>
 
         {/* Line divider with Crossed Fork/Knife or elegant icon */}
-        <div className="flex items-center gap-4 mb-6 w-full max-w-sm justify-center opacity-0 animate-fade-in" style={{ animationDelay: '1.2s', animationFillMode: 'forwards' }}>
+        <div
+          className="flex items-center gap-4 mb-6 w-full max-w-sm justify-center opacity-0 animate-fade-in"
+          style={{ animationDelay: "1.2s", animationFillMode: "forwards" }}
+        >
           <div className="h-[1px] bg-gradient-to-r from-transparent to-amber-500/50 flex-1" />
           <span className="text-amber-500/80 text-xl font-serif">⚜</span>
           <div className="h-[1px] bg-gradient-to-l from-transparent to-amber-500/50 flex-1" />
         </div>
 
         {/* Description */}
-        <p 
+        <p
           className="font-sans text-sm sm:text-base text-neutral-300 max-w-xl mb-10 leading-relaxed font-light tracking-wide opacity-0 animate-slide-up"
-          style={{ animationDelay: '1.4s', animationFillMode: 'forwards' }}
+          style={{ animationDelay: "1.4s", animationFillMode: "forwards" }}
         >
-          Welcome to Ayushman’s Kitchen, where every meal is made to bring you the comfort of ghar ka khana even on your busiest days. Whether you’re a college student missing home, a working professional with no time to cook, or someone simply craving fresh, wholesome food, we serve homestyle meals prepared with care, warmth, and the familiar taste of home
+          Welcome to Ayushman’s Kitchen, where every meal is made to bring you
+          the comfort of ghar ka khana even on your busiest days. Whether you’re
+          a college student missing home, a working professional with no time to
+          cook, or someone simply craving fresh, wholesome food, we serve
+          homestyle meals prepared with care, warmth, and the familiar taste of
+          home
         </p>
 
         {/* Action Button */}
-        <div 
+        <div
           className="opacity-0 animate-slide-up"
-          style={{ animationDelay: '1.7s', animationFillMode: 'forwards' }}
+          style={{ animationDelay: "1.7s", animationFillMode: "forwards" }}
         >
           <Magnet range={35} sensitivity={0.35}>
             <button
@@ -77,10 +95,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreMenu }) => {
       </div>
 
       {/* Floating Scroll Indicator */}
-      <div 
+      <div
         onClick={onExploreMenu}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 cursor-pointer group opacity-0 animate-fade-in"
-        style={{ animationDelay: '2.1s', animationFillMode: 'forwards' }}
+        style={{ animationDelay: "2.1s", animationFillMode: "forwards" }}
       >
         <span className="font-sans text-[9px] tracking-[0.3em] text-neutral-500 uppercase font-medium group-hover:text-amber-500 transition-colors">
           SCROLL TO EXPLORE

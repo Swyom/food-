@@ -44,7 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCart, cartItemsCount }) =>
   const navLinks = [
     { name: 'HOME', target: 'home' },
     { name: 'ABOUT US', target: 'about' },
-    { name: 'MENU', target: 'menu' },
+    { name: 'SUBSCRIPTIONS', target: 'subscriptions' },
     { name: 'GALLERY', target: 'gallery' },
     { name: 'RESERVATION', target: 'reservation' },
     { name: 'REVIEWS', target: 'reviews' },
