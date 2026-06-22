@@ -9,7 +9,10 @@ import { Reservation } from './sections/Reservation';
 import { Reviews } from './sections/Reviews';
 import { Footer } from './sections/Footer';
 import { CartDrawer } from './components/CartDrawer';
+import { AuthModal } from './components/AuthModal';
+import { SubscriptionModal } from './components/SubscriptionModal';
 import { Dish } from './types';
+import { useAuth } from './context/AuthContext';
 
 interface CartItem {
   dish: Dish;
@@ -19,13 +22,35 @@ interface CartItem {
 export default function App() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   
+  // Subscription state
+  const [isSubOpen, setIsSubOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<any | null>(null);
+
   // Real-time toast states
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showToast, setShowToast] = useState(false);
 
-  // Cart operations
+  const { user } = useAuth();
+
+  // Subscription operations
+  const handleSelectPlan = (plan: any) => {
+    if (!user) {
+      setIsAuthOpen(true);
+      return;
+    }
+    setSelectedPlan(plan);
+    setIsSubOpen(true);
+  };
+
+  // Cart operations (assuming dishes were still present)
   const handleAddToCart = (dish: Dish) => {
+    if (!user) {
+      setIsAuthOpen(true);
+      return;
+    }
+
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.dish.id === dish.id);
       if (existingItem) {
@@ -71,7 +96,7 @@ export default function App() {
   }, [showToast]);
 
   const handleScrollToMenu = () => {
-    const element = document.getElementById('menu');
+    const element = document.getElementById('subscriptions');
     if (element) {
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
@@ -146,7 +171,7 @@ export default function App() {
       )}
 
       {/* 1. Header Navigation */}
-      <Navbar onOpenCart={() => setIsCartOpen(true)} cartItemsCount={cartCount} />
+      <Navbar onOpenCart={() => setIsCartOpen(true)} cartItemsCount={cartCount} onOpenAuth={() => setIsAuthOpen(true)} />
 
       {/* 2. Hero Landing Fold */}
       <Hero onExploreMenu={handleScrollToMenu} />
@@ -154,8 +179,8 @@ export default function App() {
       {/* 3. About Us Heritage Block */}
       <AboutUs />
 
-      {/* 4. Specialties Active Dining Menu */}
-      <Specialties onAddToCart={handleAddToCart} />
+      {/* 4. Specialties Active Dining Menu (Now Subscriptions) */}
+      <Specialties onSelectPlan={handleSelectPlan} />
 
       {/* 5. Impressive Gallery Visual Panel */}
       <Gallery />
@@ -177,6 +202,19 @@ export default function App() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
+      />
+
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+      />
+
+      {/* Subscription Modal */}
+      <SubscriptionModal
+        isOpen={isSubOpen}
+        onClose={() => setIsSubOpen(false)}
+        plan={selectedPlan}
       />
 
     </div>

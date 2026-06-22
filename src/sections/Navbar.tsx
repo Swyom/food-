@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { ChefHat, Menu, X, ShoppingBag } from 'lucide-react';
+import { ChefHat, Menu, X, ShoppingBag, User as UserIcon, LogOut } from 'lucide-react';
 import { Magnet } from '../components/Magnet';
+import { useAuth } from '../context/AuthContext';
 
 interface NavbarProps {
   onOpenCart: () => void;
   cartItemsCount: number;
+  onOpenAuth: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenCart, cartItemsCount }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenCart, cartItemsCount, onOpenAuth }) => {
   const [navBackground, setNavBackground] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, profile, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,7 +97,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCart, cartItemsCount }) =>
 
           {/* Interactive Actions */}
           <div className="hidden lg:flex items-center gap-4">
-            {/* Cart Icon Toggle */}
+            
+            {user ? (
+              <div className="flex items-center gap-3 mr-2">
+                <div className="text-right">
+                  <p className="text-xs font-semibold text-amber-500">{profile?.name || 'User'}</p>
+                  <button onClick={logout} className="text-[10px] text-neutral-400 hover:text-white uppercase tracking-wider">Logout</button>
+                </div>
+              </div>
+            ) : (
+              <Magnet range={20}>
+                <button
+                  onClick={onOpenAuth}
+                  className="p-2.5 text-neutral-300 hover:text-amber-500 transition-colors bg-neutral-900 border border-neutral-800 rounded-full cursor-pointer flex items-center gap-2"
+                >
+                  <UserIcon className="w-4 h-4" />
+                </button>
+              </Magnet>
+            )}
+
+            {/* Cart Icon Toggle
             <Magnet range={20}>
               <button
                 onClick={onOpenCart}
@@ -107,7 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCart, cartItemsCount }) =>
                   </span>
                 )}
               </button>
-            </Magnet>
+            </Magnet> */}
 
             {/* Book table */}
             <Magnet range={30} sensitivity={0.3}>
@@ -122,6 +144,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCart, cartItemsCount }) =>
 
           {/* Mobile Navigation Toggle */}
           <div className="flex lg:hidden items-center gap-3">
+            {!user ? (
+              <button
+                onClick={onOpenAuth}
+                className="p-2.5 text-neutral-300 bg-neutral-900 border border-neutral-800 rounded-full"
+              >
+                <UserIcon className="w-4 h-4" />
+              </button>
+            ) : (
+              <button
+                onClick={logout}
+                className="p-2.5 text-amber-500 bg-neutral-900 border border-neutral-800 rounded-full"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            )}
             <button
               onClick={onOpenCart}
               className="relative p-2.5 text-neutral-300 bg-neutral-900 border border-neutral-800 rounded-full"

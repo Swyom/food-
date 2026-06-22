@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { X, Trash2, ShoppingBag, Plus, Minus, CheckCircle, RefreshCw, Sparkles, CreditCard } from 'lucide-react';
 import { Dish } from '../types';
 import { Magnet } from './Magnet';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
+import { useAuth } from '../context/AuthContext';
 
 interface CartItem {
   dish: Dish;
@@ -28,6 +31,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const [checkingOut, setCheckingOut] = useState(false);
   const [checkoutComplete, setCheckoutComplete] = useState(false);
   const [orderId, setOrderId] = useState('');
+  
+  const { user, profile } = useAuth();
 
   if (!isOpen) return null;
 
@@ -36,15 +41,36 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const serviceCharge = subtotal > 0 ? 3.50 : 0; // Culinary delivery fee / table setup fee
   const total = subtotal + tax + serviceCharge;
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (cartItems.length === 0) return;
     setCheckingOut(true);
 
-    setTimeout(() => {
+    try {
+      const orderData = {
+        userId: user?.uid || null,
+        customerName: profile?.name || user?.email || "Guest User",
+        items: cartItems.map(item => ({
+          name: item.dish.name,
+          price: item.dish.price,
+          quantity: item.quantity
+        })),
+        subtotal: subtotal.toFixed(2),
+        tax: tax.toFixed(2),
+        total: total.toFixed(2),
+        status: "Pending",
+        createdAt: serverTimestamp()
+      };
+
+      const docRef = await addDoc(collection(db, "orders"), orderData);
+      
       setCheckingOut(false);
-      setOrderId('ORD-' + Math.floor(100000 + Math.random() * 900000));
+      setOrderId(docRef.id);
       setCheckoutComplete(true);
-    }, 1800);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      setCheckingOut(false);
+      alert("There was an error processing your order. Please try again.");
+    }
   };
 
   const handleReceived = () => {
