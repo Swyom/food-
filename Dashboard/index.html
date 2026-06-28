@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>GOURMET ADMIN</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <i class="fa-solid fa-chart-pie"></i> <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-cart-shopping"></i> <span>Orders</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-users"></i> <span>Customers</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Site</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Dashboard Overview</h1>
+                <p>Welcome back. Here's what's happening today.</p>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon bg-amber-light text-amber">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-details">
+                        <p>Total Revenue</p>
+                        <h3>$12,450</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bg-amber-light text-amber">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="stat-details">
+                        <p>Active Orders</p>
+                        <h3 id="active-orders-count">...</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bg-amber-light text-amber">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="stat-details">
+                        <p>Total Customers</p>
+                        <h3>1,240</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Recent Orders</h2>
+                </div>
+                <div class="table-content">
+                    <table id="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-body">
+                            <tr>
+                                <td colspan="4" class="loading">
+                                    <div class="spinner"></div> Loading orders...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
